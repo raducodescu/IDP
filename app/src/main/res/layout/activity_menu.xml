@@ -74,4 +74,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017"
         app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
+
+    <Button
+        android:id="@+id/show_friends"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/com_facebook_messenger_blue"
+        android:text="SHOW ON MAP"
+        android:textColor="@color/accent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.795" />
+
 </android.support.constraint.ConstraintLayout>

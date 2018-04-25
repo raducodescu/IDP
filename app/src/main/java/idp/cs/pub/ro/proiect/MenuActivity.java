@@ -6,8 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,10 +39,10 @@ public class MenuActivity extends AppCompatActivity {
     Button friends_btn;
     ListView friends_list;
     private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList;
+    private ArrayList<String> friendsArrayList;
     Intent updateLocationService;
-    Bitmap profilePictureBitmap;
     ImageView profilePicture;
+    Button showOnMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +55,10 @@ public class MenuActivity extends AppCompatActivity {
         friends_btn = findViewById(R.id.friends_btn);
         friends_list = findViewById(R.id.friends_list);
         profilePicture = findViewById(R.id.profilePicture);
+        showOnMap = findViewById(R.id.show_friends);
 
-        arrayList = new ArrayList();
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+        friendsArrayList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, friendsArrayList);
         friends_list.setAdapter(adapter);
 
         token = (AccessToken)getIntent().getExtras().get("token");
@@ -93,11 +92,11 @@ public class MenuActivity extends AppCompatActivity {
                                 System.out.println("Graph RESPONSE: \t" + response);
                                 try {
                                     JSONArray friendsJson = response.getJSONObject().getJSONArray("data");
-                                    arrayList.clear();
+                                    friendsArrayList.clear();
                                     adapter.notifyDataSetChanged();
                                     for (int i = 0; i < friendsJson.length(); i++) {
                                         JSONObject friend = friendsJson.getJSONObject(i);
-                                        arrayList.add(friend.getString("name"));
+                                        friendsArrayList.add(friend.getString("name"));
                                         adapter.notifyDataSetChanged();
                                     }
 
@@ -110,8 +109,21 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-    }
+        showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (friendsArrayList.size() == 0)
+                    return;
+
+                Intent intent = new Intent(getApplicationContext(), FriendsMap.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+    }
 
     private class SetPicture extends AsyncTask<String, String, Bitmap> {
 

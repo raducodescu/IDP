@@ -27,6 +27,11 @@ import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.Arrays;
 
 import butterknife.BindView;
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -208,4 +214,5 @@ public class MainActivity extends AppCompatActivity {
 
         return valid;
     }
+
 }
