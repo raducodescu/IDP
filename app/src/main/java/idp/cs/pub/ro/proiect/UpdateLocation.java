@@ -8,7 +8,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 
 public class UpdateLocation extends Service {
@@ -17,6 +16,8 @@ public class UpdateLocation extends Service {
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 1000;
     private static final float LOCATION_DISTANCE = 10f;
+
+
 
     private class LocationListener implements android.location.LocationListener
     {
@@ -32,9 +33,15 @@ public class UpdateLocation extends Service {
         public void onLocationChanged(Location location)
         {
             Log.e(TAG, "onLocationChanged: " + location);
+            MenuActivity.location = location;
             mLastLocation.set(location);
-            Toast.makeText(UpdateLocation.this, "Lat = " + location.getLatitude() + " Long " + location.getLongitude(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(UpdateLocation.this, "Lat = " + location.getLatitude() + " Long " + location.getLongitude(), Toast.LENGTH_LONG).show();
             Log.e(TAG, "Lat = " + location.getLatitude() + " Long " + location.getLongitude());
+
+            SendLocationThread thread = new SendLocationThread(location,getString(R.string.updateLocation), userId);
+
+            new Thread(thread).start();
+
         }
 
         @Override
