@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/aluminum"
+    tools:context=".Chat">
+
+
+    <ListView
+        android:id="@+id/messages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/relativ"/>
+
+    <RelativeLayout
+        android:id="@+id/relativ"
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp">
+
+        <EditText
+            android:id="@+id/message"
+            android:background="@color/com_facebook_button_login_silver_background_color"
+            android:layout_width="258dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:hint="Message"
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/submit"
+            android:background="@drawable/com_facebook_button_background"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="36dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

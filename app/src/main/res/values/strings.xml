@@ -9,5 +9,7 @@
     <string name="title_activity_friends_map">Map</string>
     <string name="updateLocation">http://35.196.203.203:5002/updatelocation</string>
     <string name="getLocation">http://35.196.203.203:5002/location</string>
+    <string name="sendMessage">http://35.196.203.203:5002/sendmessage</string>
+
 
 </resources>

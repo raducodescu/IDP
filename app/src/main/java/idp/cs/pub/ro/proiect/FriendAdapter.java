@@ -1,6 +1,7 @@
 package idp.cs.pub.ro.proiect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(R.layout.friend, null);
         }
-        Friend friend = friends.get(position);
+        final Friend friend = friends.get(position);
         view.setId(position);
         if (friend != null) {
             Button msg = view.findViewById(R.id.chat);
@@ -53,7 +54,12 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
             msg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    
+                    Intent intent = new Intent(context, Chat.class);
+                    intent.putExtra("myid", friend.getMyid());
+                    intent.putExtra("friendid", friend.getFacebookid());
+                    intent.putExtra("friendname", friend.getName());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
                 }
             });
         }
